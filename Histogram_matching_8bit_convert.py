@@ -1,14 +1,16 @@
+#!/usr/bin/python3
 import os
 import numpy as np
 from PIL import Image
 import multiprocessing
+import sys 
 
 #Input options
-input_folder = r'D:\Uni\Dino\Projects\Chilostomela\dataset_fuse'
-output_folder = r'D:\Uni\Dino\Projects\Chilostomela\adj'
+input_folder = sys.argv[1]
+output_folder = sys.argv[2]
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
-template_image_path = r'D:\Uni\Dino\Projects\Chilostomela\dataset_fuse\s0032_fused_tp_0_ch_0.tif'
+template_image_path = sys.argv[3]
 
 #Allow for large images
 Image.MAX_IMAGE_PIXELS = None
