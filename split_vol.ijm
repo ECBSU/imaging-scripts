@@ -2,15 +2,15 @@
 subvolumeSizeX = 128;
 subvolumeSizeY = 128;
 subvolumeSizeZ = 128;
-out_dir="D:/Uni/unet_test/unet/train/images/Substack"
+out_dir="D:/Uni/unet_test/unet_subset/masks"
 
 // Get the active 3D image
 getDimensions(width, height, channels, slices, frames);
 img=getTitle()
 // Calculate the number of subvolumes in each dimension
-numSubvolumesX = width / subvolumeSizeX;
-numSubvolumesY = height / subvolumeSizeY;
-numSubvolumesZ = slices / subvolumeSizeZ;
+numSubvolumesX = floor(width / subvolumeSizeX);
+numSubvolumesY = floor(height / subvolumeSizeY);
+numSubvolumesZ = floor(slices / subvolumeSizeZ);
 
 // Iterate through each subvolume
 for (i = 0; i < numSubvolumesX; i++) {
@@ -31,3 +31,4 @@ for (i = 0; i < numSubvolumesX; i++) {
         }
     }
 }
+run("Close");
