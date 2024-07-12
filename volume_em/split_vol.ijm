@@ -1,3 +1,5 @@
+//ImageJ macro to split volume images into subvolumes
+
 // Define the size of subvolumes
 subvolumeSizeX = 128;
 subvolumeSizeY = 128;
