@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # activate enviroment
 conda deactivate
 conda deactivate
