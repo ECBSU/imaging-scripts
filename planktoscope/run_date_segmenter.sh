@@ -3,7 +3,7 @@
 
 # Function to display help message
 display_help() {
-    echo "Usage: $0 -d|--date <DATE>  -i|--in_dir <path/to/pkscope/data/img>  -o|--out_dir <output/path> "
+    echo "Usage: $0 -d|--date <DATE1,DATE2,DATE3>  -i|--in_dir <path/to/pkscope/data/img>  -o|--out_dir <output/path> "
 }
 
 # Parse command-line options
@@ -39,15 +39,16 @@ if [[ -z "$date" ]]; then
     display_help
     exit 1
 fi
+IFS=',' read -r -a date_array <<< "$dates"
 
 # Check if input and output directories are set
 if [[ -z "$in" ]]; then
-    echo "Error: No input directory provided. Using default </media/ecbsu/rootfs/home/pi/data/img/$date> "
-    in="/media/ecbsu/rootfs1/home/pi/data/img/$date"
+    echo "Warning: No input directory provided. Using default </media/ecbsu/rootfs/home/pi/data/img/$date> "
+    in="/media/ecbsu/rootfs/home/pi/data/img/$date"
 fi
 
 if [[ -z "$outdir" ]]; then
-    echo "Error: No output directory provided. Using default </media/ecbsu/vEM_data/planktoscope_data> "
+    echo "Warning: No output directory provided. Using default </media/ecbsu/vEM_data/planktoscope_data> "
     outdir='/media/ecbsu/vEM_data/planktoscope_data'
 fi
 
@@ -56,17 +57,23 @@ conda deactivate
 conda deactivate
 source /home/ecbsu/Desktop/seg_dir/seg_dir/bin/activate
 
-# Make output folder
-mkdir $outdir/$date
+# Process each date
+for date in "${date_array[@]}"; do
+    echo "Processing date: $date"
+    
+    # Make output folder
+    mkdir -p "$outdir/$date"
 
-# Run segmenter on all sites and runs
-for site in $(find "$in" -mindepth 1 -maxdepth 1 -type d); do
-  o="$outdir/$date/$(basename "$site")"
-  mkdir -p $o
-  for run in "$site"/* ; do python /home/ecbsu/Desktop/seg_dir/local_segmenter_cmd.py -i $run -o $o -c & done # the -c flag here is used to remove debug files (extremely large files)
+    # Run segmenter on all sites and runs
+    for site in $(find "$in/$date" -mindepth 1 -maxdepth 1 -type d); do
+        o="$outdir/$date/$(basename "$site")"
+        mkdir -p "$o"
+        for run in "$site"/* ; do
+            python /home/ecbsu/Desktop/seg_dir/local_segmenter_cmd.py -i "$run" -o "$o" -c &
+        done
+    done
 done
 
-wait
 
 for site in $(find "$in" -mindepth 1 -maxdepth 1 -type d); do
   o="$outdir/$date/$(basename "$site")"
