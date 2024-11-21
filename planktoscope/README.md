@@ -9,3 +9,10 @@ https://cloud.univ-grenoble-alpes.fr/s/x8EnoFSFRsXbFsa?dir=undefined&openfile=73
 local_segmenter_cmd.py \
 Is a modified version of the segmenter that will run in command line w/o UI.\
 Tested on ubuntu
+
+run using scripts 
+
+```
+source script.sh
+
+```
