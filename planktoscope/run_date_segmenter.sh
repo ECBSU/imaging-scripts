@@ -6,6 +6,8 @@ display_help() {
     echo "Usage: $0 -d|--date <DATE1,DATE2,DATE3>  -i|--in_dir <path/to/pkscope/data/img>  -o|--out_dir <output/path> "
 }
 
+segmentor=/home/ecbsu/Desktop/seg_dir/local_segmenter_cmd.py
+
 # Parse command-line options
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -69,7 +71,7 @@ for date in "${date_array[@]}"; do
         o="$outdir/$date/$(basename "$site")"
         mkdir -p "$o"
         for run in "$site"/* ; do
-            python /home/ecbsu/Desktop/seg_dir/local_segmenter_cmd.py -i "$run" -o "$o" -c &
+            python $segmentor -i "$run" -o "$o" -c &
         done
     done
 done
