@@ -10,9 +10,8 @@ local_segmenter_cmd.py \
 Is a modified version of the segmenter that will run in command line w/o UI.\
 Tested on ubuntu
 
-run using scripts 
+run scripts using:
 
 ```
 source script.sh
-
 ```
