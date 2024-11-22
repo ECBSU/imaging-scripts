@@ -1,1 +1,1 @@
-If any of these scripts are helpfull, please cite this giithub repository. 
+If any of these scripts are helpful, please cite this GitHub repository. 
