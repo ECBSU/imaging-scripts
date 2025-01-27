@@ -1,3 +1,5 @@
+Run on python 3.12.1
+
 Segmentation is possible on the Planktoscope but is slow and takes up a lot of space.\ 
 The local segmenter will allow faster segmentation and of large numbers of images. 
 
