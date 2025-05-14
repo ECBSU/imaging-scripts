@@ -10,8 +10,8 @@ parser = argparse.ArgumentParser(description='Histogram -> contrast strecing -> 
 parser.add_argument('-in',dest ='input_folder', required = 'TRUE' , help='Input folder of 16-bit images')
 parser.add_argument('-out', dest ='output_folder', required = 'TRUE' , help='Output folder of 8-bit images')
 parser.add_argument('-t', dest ='template', required = 'TRUE' , help='Full path to template used for histogram matching')
-parser.add_argument('-up', dest ='upper', required = 'TRUE' , type = int, help='Upper threshold for streatching')
-parser.add_argument('-low', dest ='lower', required = 'TRUE' , type = int, help='Lower threshold for streatching')
+parser.add_argument('-up', dest ='upper', default=65535 , type = int, help='Upper threshold for streatching')
+parser.add_argument('-low', dest ='lower', default=0 , type = int, help='Lower threshold for streatching')
 args = parser.parse_args()
 
 input_folder = args.input_folder
