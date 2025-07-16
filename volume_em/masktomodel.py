@@ -6,11 +6,11 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', help='Input TIFF file')
 parser.add_argument('--fmt', default='stl', help='Output format (e.g., stl, ply, obj)')
-parser.add_argument('--x', type=float, required=True, help='pix size of x in um')
-parser.add_argument('--y', type=float, required=True, help='pix size of y in um')
-parser.add_argument('--z', type=float, required=True, help='pix size of z in um')
+parser.add_argument('-x', '--x', type=float, required=True, help='pix size of x in um')
+parser.add_argument('-y', '--y', type=float, required=True, help='pix size of y in um')
+parser.add_argument('-z', '--z', type=float, required=True, help='pix size of z in um')
 parser.add_argument('--resize', type=float, help='Resize factor')
-parser.add_argument('--deci', type=float, help='Decimation factor, reduce complexity of model (greatly influences filesize) /n Fraction of the original mesh to remove. If target_reduction is set to 0.9, this filter will try to reduce the data set to 10% of its original size and will remove 90% of the input triangles.')
+parser.add_argument('--deci', type=float, help='Decimation factor, reduce complexity of model (greatly influences filesize). Fraction of the original mesh to remove. If target_reduction is set to 0.9, this filter will try to reduce the data set to 10-percnet of its original size and will remove 90-percent of the input triangles.')
 args = parser.parse_args()
 
 if args.deci is not None:
